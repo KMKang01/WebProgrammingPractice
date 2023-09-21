@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title></title>
+    <script>
+      function account(id, name) {
+        this.id = id;
+        this.name = name;
+        this.balance = 0;
+
+        this.inquiry = function () {
+          return this.balance;
+        };
+        this.deposit = function (money) {
+          this.balance += money;
+        };
+        this.withdraw = function (money) {
+          this.balance -= money;
+        };
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      let han = new account(1, "한성대");
+      let we = new account(2, "우리대");
+
+      han.deposit(10000);
+      document.write(han.name + "의 잔액은 " + han.inquiry() + "<br>");
+      han.withdraw(5000);
+      document.write(han.name + "의 잔액은 " + han.inquiry() + "<br>");
+
+      we.deposit(1000);
+      document.write(we.name + "의 잔액은 " + we.inquiry() + "<br>");
+      we.deposit(1000000);
+      document.write(we.name + "의 잔액은 " + we.inquiry() + "<br>");
+      we.withdraw(1000);
+      document.write(we.name + "의 잔액은 " + we.inquiry() + "<br>");
+    </script>
+  </body>
+</html>

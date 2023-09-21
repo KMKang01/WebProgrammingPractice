@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title></title>
+    <script>
+      function inquiry() {
+        return this.balance;
+      }
+      function deposit(money) {
+        this.balance += money;
+      }
+      function withdraw(money) {
+        this.balance -= money;
+      }
+
+      let account = new Object();
+      account.name = "한성대";
+      account.code = "1001-123456";
+      account.balance = 0;
+      account.inquiry=inquiry;
+      account.deposit = deposit;
+      account.withdraw = withdraw;
+    </script>
+  </head>
+  <body>
+    <script>
+        document.write("account : ");
+        document.write(account.name + ", ");
+        document.write(account.code+", ");
+        document.write(account.balance + "<br>");
+
+        account.deposit(10000);
+        document.write("입금 후 잔액은 " + account.inquiry() + "<br>");
+        account.withdraw(5000);
+        document.write("출금 후 잔액은 "+ account.inquiry() + "<br>");
+
+        account.deposit(1000);
+        document.write("입금 후 잔액은 " + account.inquiry() + "<br>");
+
+        account.deposit(1000000);
+        document.write("입금 후 잔액은 " + account.inquiry() + "<br>");
+    </script>
+  </body>
+</html>

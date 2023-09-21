@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+ <title>for문으로 구구단 만들기</title>
+</head>
+<body>
+ <script>
+    let txtStore="";
+    for(a = 1 ; a <= 9 ; a++){
+        for(b = 1 ; b <= 9 ; b++){
+            txtStore += b + " * " + a + "=" + String(a*b).padStart(2,"0") +" &nbsp;";
+        }
+        txtStore+="<br>";
+        document.write(txtStore);
+        txtStore="";
+    }
+ </script>
+</body>
+</html>
