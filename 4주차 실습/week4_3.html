@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title></title>
+    <script>
+      let account = {
+        name: "한성대",
+        code: "1001-123456",
+        balance: 0,
+        <!-- function이 들어간 부분은 메소드이기 때문에 사용할 때 ()를 붙여줘야 함.-->
+        inquiry: function () {
+          return this.balance;
+        },
+        deposit: function (money) {
+          return (this.balance += money);
+        },
+        withdraw: function (money) {
+          return (this.balance -= money);
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <script>
+      document.write("account : ");
+      document.write(account.name + ", ");
+      document.write(account.code + ", ");
+      document.write(account.balance + "<br>");
+
+      account.deposit(10000);
+      document.writeln("입금 후 잔액은 " + account.inquiry() + "<br>");
+      account.withdraw(5000);
+      document.writeln("출금 후 잔액은 " + account.inquiry() + "<br>");
+
+      account.deposit(1000);
+      document.writeln("입금 후 잔액은 " + account.inquiry() + "<br>");
+
+      account.deposit(1000000);
+      document.writeln("입금 후 잔액은 " + account.inquiry() + "<br>");
+    </script>
+  </body>
+</html>

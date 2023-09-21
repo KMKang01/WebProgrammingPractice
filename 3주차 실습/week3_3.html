@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+ <title>함수 만들기</title>
+ <style>
+    div{
+        display: inline-block;
+        width: 100px;
+        height: 60px;
+        color: white;
+        text-align: center;
+        line-height: 60px;
+    }
+    #b1{
+        background-color: red;
+    }
+    #b2{
+        background-color: green;
+    }
+    #b3{
+        background-color: blue;
+    }
+ </style>
+</head>
+<body>
+ <script>
+    function mClick(obj){
+        alert("버튼 "+obj+"을/를 클릭했어요");
+    }
+ </script>
+<div id="b1" onclick="mClick(1)">버튼 1</div>
+<div id="b2" onclick="mClick(2)">버튼 2</div>
+<div id="b3" onclick="mClick(3)">버튼 3</div>
+</body>
+</html>

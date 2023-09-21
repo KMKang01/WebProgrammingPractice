@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+ <title>랜덤 수 만들기</title>
+ 
+</head>
+<body>
+    <script>
+        let random = Math.floor(Math.random()*10);
+        let input = prompt("0~9 사의 숫자를 입력하세요");
+        if(random == input){
+            alert("정답입니다.");
+        }
+        else{
+            alert("틀렸습니다.");
+        }
+        while(random != input){
+            if(input>random){
+                alert("더 작은 수를 입력하세요.");
+                input = prompt("0~9 사의 숫자를 입력하세요");
+            }
+            else{
+                alert("더 큰 수를 입력하세요.");
+                input = prompt("0~9 사의 숫자를 입력하세요");
+            }
+        }
+        alert("정답입니다.");
+     </script>
+</body>
+</html>
