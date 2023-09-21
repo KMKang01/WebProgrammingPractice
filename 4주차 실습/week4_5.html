@@ -19,16 +19,20 @@
         drive: function () {
           if (this.speed > 0 && this.oil > 0) {
             document.getElementById("volume").innerHTML = " Oil : " + this.oil;
-            document.getElementById("carSpeed").innerHTML =
-              ">>speed : " + this.speed;
+            document.getElementById("carSpeed").innerHTML = ">>speed : " + this.speed;
             this.speed -= 2;
             this.oil -= 2;
           } else {
             document.getElementById("carSpeed").innerHTML = ">> STOP";
             this.speed = 0;
           }
-        },
-      };
+        }
+      }
+      
+      function drive(){
+          car.drive();
+        }
+        setInterval(drive, 500);
     </script>
   </head>
   <body>
