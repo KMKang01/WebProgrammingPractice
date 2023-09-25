@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Prototype</title>
+  <script>
+    function Car() {
+      this.speed = 0;
+      this.oil = 0;
+
+      this.color = function (elementId, color) {
+        document.getElementById(elementId).style.color = color;
+      }
+
+      this.brake = function (strong) {
+        this.speed -= strong;
+        if (this.speed < 0)
+          this.speed = 0;
+      }
+
+      this.accel = function (strong) {
+        this.speed += strong;
+      }
+
+      this.fill = function (oil, elementId) {
+        this.oil += oil;
+        document.getElementById(elementId).innerHTML = "Oil : " + this.oil;
+        document.getElementById(elementId).style.display = "inline-block";
+      }
+
+      this.drive = function (speedElementId, oilElementId) {
+        if (this.speed > 0 && this.oil > 0) {
+          document.getElementById(oilElementId).innerHTML = "Oil : " + this.oil;
+          document.getElementById(speedElementId).innerHTML = "속도 : " + this.speed;
+          document.getElementById(speedElementId).style.display = "inline-block";
+          this.speed -= 2;
+          this.oil -= 2;
+
+          if (this.speed < 0) {
+            this.speed = 0; // 속도가 음수가 되지 않도록 보정
+          }
+          if (this.oil < 0) {
+            this.oil = 0; // 기름이 음수가 되지 않도록 보정
+          }
+        } else {
+          this.speed = 0;
+          document.getElementById(speedElementId).innerHTML = "속도 : " + this.speed;
+        }
+      }
+    }
+
+    let redcar = new Car();
+    let bluecar = new Car();
+
+    function redcarview() {
+      redcar.color("red", "red");
+      redcar.drive("redCarSpeed", "redVolume");
+    }
+    setInterval(redcarview, 500);
+
+    function bluecarview() {
+      bluecar.color("blue", "blue");
+      bluecar.drive("blueCarSpeed", "blueVolume");
+    }
+    setInterval(bluecarview, 500);
+  </script>
+  <style>
+    div {
+      box-sizing: border-box;
+      font-size: 18px;
+      width: 150px;
+      height: 50px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <h1 id='red'>Red Car</h1>
+    <div style="display: inline-block">
+      <div id="redVolume">Oil : 0</div>
+      <input type="button" value="주유" onclick="redcar.fill(50, 'redVolume');" />
+    </div>
+    <div style="display: inline-block">
+      <div id="redCarSpeed">속도: 0</div>
+      <input type="button" value="브레이크" id="redBrake" onclick="redcar.brake(10);" />
+      <input type="button" value="액셀" id="redAccel" onclick="redcar.accel(10)" />
+    </div>
+  </form>
+  <hr>
+  <form action="">
+    <h1 id="blue">Blue Car</h1>
+    <div style="display: inline-block">
+      <div id="blueVolume">Oil : 0</div>
+      <input type="button" value="주유" onclick="bluecar.fill(50, 'blueVolume');" />
+    </div>
+    <div style="display: inline-block">
+      <div id="blueCarSpeed">속도: 0</div>
+      <input type="button" value="브레이크" id="blueBrake" onclick="bluecar.brake(10);" />
+      <input type="button" value="액셀" id="blueAccel" onclick="bluecar.accel(10)" />
+    </div>
+  </form>
+</body>
+</html>
