@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='ko'>
+
+<head>
+    <title></title>
+    <script>
+        function write() {
+            let copy = document.getElementsByClassName("hTag");
+            let text = ""
+            for (let i = copy.length; i > 0 ; i--) {
+                text += "<h"+(i)+">"+"나는 h"+(i)+" 태그입니다."+"</h"+(i)+">";
+            }
+            let div = document.getElementsByTagName("div")[0];
+            div.innerHTML = text;
+        }
+       write();
+    </script>
+</head>
+
+<body onload="write()">
+    <h1 class="hTag">나는 h1 태그입니다.</h1>
+    <h2 class="hTag">나는 h2 태그입니다.</h2>
+    <h3 class="hTag">나는 h3 태그입니다.</h3>
+    <h4 class="hTag">나는 h4 태그입니다.</h4>
+    <h5 class="hTag">나는 h5 태그입니다.</h5>
+    <h6 class="hTag">나는 h6 태그입니다.</h6>
+    <hr>
+    <div></div>
+</body>
+
+</html>
