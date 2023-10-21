@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang='ko'>
+
+<head>
+    <title>키 이벤트 응용</title>
+    <style>
+        table {
+            border: none;
+            border-collapse: separate;
+            border-spacing: 5px;
+        }
+
+        td {
+            width: 60px;
+            height: 60px;
+            border: 1px red solid;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <h2>화살표 키로 셀 이동하기</h2>
+    <hr>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
+    </table>
+
+    <script>
+        let cell = document.getElementsByTagName("td");
+
+        function init() {
+            document.getElementsByTagName("body")[0].addEventListener("keydown", keyDown)
+        }
+
+        function keyDown(e) {
+            let i = 0;
+            while (true) {
+                switch (e.keyCode) {
+                    case "ArrowLeft":
+                        if (i == 0 || i == 4 || i == 8 || i == 12)
+                            break;
+                        else {
+                            cell[i].style.backgroundColor = "white";
+                            i--;
+                            cell[i].style.backgroundColor = "red";
+                            break;
+                        }
+
+                    case "ArrowUp":
+                        if (i != 0 || i != 1 || i != 2 || i != 3) {
+                            cell[i].style.backgroundColor = "white";
+                            i -= 4;
+                        }
+                        cell[i].style.backgroundColor = "red";
+                        break;
+
+                    case "ArrowRight":
+                        if (i != 3 || i != 7 || i != 11 || i != 15) {
+                            cell[i].style.backgroundColor = "white";
+                            i++;
+                        }
+                        cell[i].style.backgroundColor = "red";
+                        break;
+
+                    case "ArrowDown":
+                        if (i != 12 || i != 13 || i != 14 || i != 15) {
+                            cell[i].style.backgroundColor = "white";
+                            i += 4;
+                        }
+                        cell[i].style.backgroundColor = "red";
+                        break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
