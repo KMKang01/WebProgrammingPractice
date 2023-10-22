@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>브라우저 새 창 열기</title>
+</head>
+
+<body>
+    <h3>새 윈도우 창 열기</h3>
+    <hr>
+    <input type="button" value="윈도우 창 열기" onclick="winResize();">
+    <script>
+        function winResize() {
+            window.open("./ex5.html", "new ", "left=0, top=0, width=500px, height=400px, resizable");
+        }
+    </script>
+</body>
+
+</html>
