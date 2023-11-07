@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='ko'>
+
+<head>
+    <title>도시락 할인 행사</title>
+    <script>
+        function panel() {
+            let dt = new Date();
+            let msg = document.getElementById("msg");
+
+            let hours = dt.getHours();
+            if (hours <= 9) hours = "0" + hours;
+            let minutes = dt.getMinutes();
+            if (minutes <= 9) minutes = "0" + minutes;
+            let seconds = dt.getSeconds();
+            if (seconds <= 9) seconds = "0" + seconds;
+
+            if (hours >= 10 && hours < 14)
+                msg.innerHTML = "도시락 1+1 행사!";
+            else if (hours >= 17 && hours < 20)
+                msg.innerHTML = "도시락 30% 할인!";
+            else
+                msg.innerHTML = "도시락 사세요~";
+
+            let presentTime = document.getElementById("clock");
+            presentTime.innerHTML = hours + ":" + minutes + ":" + seconds;
+        }
+        setInterval(panel, 1000); // 실시간으로 함수를 처리하려고하는 경우 꼭 필요함. 
+        // setInterval(반복할 함수, msec 단위)
+    </script>
+</head>
+
+<body>
+    <h1 id="clock"></h1>
+    <h3 id="msg"></h3>
+</body>
+
+</html>

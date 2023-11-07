@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <title></title>
-    <script>
-      let car = {
-        speed: 0,
-        oil: 0,
-        brake: function (strong) {
-          this.speed -= strong;
-        },
-        accel: function (strong) {
-          this.speed += strong;
-        },
-        fill: function (oil) {
-          this.oil += oil;
-          document.getElementById("volume").innerHTML = " Oil : " + car.oil;
-        },
-        drive: function () {
-          if (this.speed > 0 && this.oil > 0) {
-            document.getElementById("volume").innerHTML = " Oil : " + this.oil;
-            document.getElementById("carSpeed").innerHTML = ">>speed : " + this.speed;
-            this.speed -= 2;
-            this.oil -= 2;
-          } else {
-            document.getElementById("carSpeed").innerHTML = ">> STOP";
-            this.speed = 0;
-          }
+
+<head>
+  <title></title>
+  <script>
+    let car = {
+      speed: 0,
+      oil: 0,
+      brake: function (strong) { //strong과 this.speed를 문자열에서 숫자로 형변환
+        strong = Number(strong);
+        this.speed = Number(this.speed);
+        this.speed -= strong;
+      },
+      accel: function (strong) { //strong과 this.speed를 문자열에서 숫자로 형변환
+        strong = Number(strong);
+        this.speed = Number(this.speed);
+        this.speed += strong;
+      },
+      fill: function (oil) {
+        oil = Number(oil);
+        this.oil = Number(this.oil);
+        this.oil += oil;
+        document.getElementById("volume").innerHTML = " Oil : " + this.oil;
+      },
+      drive: function () {
+        if (this.speed > 0 && this.oil > 0) {
+          document.getElementById("volume").innerHTML = " Oil : " + this.oil;
+          document.getElementById("carSpeed").innerHTML = ">> SPEED : " + this.speed;
+          this.speed -= 0.1;
+          this.oil -= 0.1;
+          this.speed = (this.speed).toFixed(2);
+          this.oil = (this.oil).toFixed(2);
+        } else {
+          document.getElementById("carSpeed").innerHTML = ">> STOP";
+          this.speed = 0;
         }
       }
-      
-      function drive(){
-          car.drive();
-        }
-        setInterval(drive, 500);
-    </script>
-  </head>
-  <body>
-    <form action="">
-      <div id="volume">Oil : 0</div>
-      <input type="button" value="주유" id="oil" onclick="car.fill(50);" />
-      <p>
-        <input type="button" value="브레이크" id="brake" onclick="car.brake(10);" />
-        <input type="button" value="액셀" id="accel" onclick="car.accel(10)" />
-      </p>
-    </form>
-    <div id="carSpeed">>> STOP</div>
-  </body>
+    }
+
+    function drive() {
+      car.drive();
+    }
+    setInterval(drive, 100); //msec단위로 반복
+  </script>
+</head>
+
+<body>
+  <form action="">
+    <div id="volume">Oil : 0</div>
+    <input type="button" value="주유" id="oil" onclick="car.fill(50);" />
+    <p>
+      <input type="button" value="브레이크" id="brake" onclick="car.brake(5.0);" />
+      <input type="button" value="액셀" id="accel" onclick="car.accel(10)" />
+    </p>
+  </form>
+  <div id="carSpeed">>> STOP</div>
+</body>
+
 </html>

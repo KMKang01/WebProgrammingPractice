@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+ <title>Date 객체</title>
+ <script>
+    function dClock(){
+        var dt = new Date();
+        var month = dt.getMonth();
+        var date= dt.getDate();
+        var day = dt.getDay();
+        var hours = dt.getHours();
+        var minutes = dt.getMinutes();
+        var seconds = dt.getSeconds();
+
+        if(minutes<10) minutes = "0" + minutes; // 분이 9 이하이면 한 자리만 나오기 때문에, 앞에 문자 0을 붙여서 두자리로 나타내도록 함
+        if(seconds<10) seconds = "0" + seconds; // 초가 9 이하이면 한 자리만 나오기 때문에, 앞에 문자 0을 붙여서 두자리로 나타내도록 함
+
+        document.getElementById("Kr").innerHTML = dt;
+        document.getElementById("show").innerHTML = hours + ":" + minutes + ":" + seconds;
+    }
+    setInterval(dClock, 1000);
+ </script>
+</head>
+<body>
+ <h1 id="Kr"></h1>
+ <h1 id="show"></h1>
+</body>
+</html>

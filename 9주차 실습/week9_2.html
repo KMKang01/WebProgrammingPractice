@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='ko'>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <h2>캔버스 그리기</h2>
+    <hr>
+    <canvas id="circle" width="500" height="500"></canvas>
+    <script>
+        let canvas = document.getElementById("circle");
+        let context = canvas.getContext("2d");
+        let objX = 100;
+        let objY = 100;
+
+        let keyEvent = addEventListener("keydown", e);
+
+        function movingCircleObj() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+
+            context.arc(objX, objY, 30, 0, 2 * Math.PI, false);
+            context.fillStyle = "green";
+            context.fill();
+            context.closePath();
+
+            
+        }
+
+
+
+        setInterval(movingCircleObj, 1);
+    </script>
+</body>
+
+</html>
