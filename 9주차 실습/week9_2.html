@@ -12,24 +12,41 @@
     <script>
         let canvas = document.getElementById("circle");
         let context = canvas.getContext("2d");
-        let objX = 100;
-        let objY = 100;
+        let objX = canvas.width/2;
+        let objY = canvas.height/2;
 
-        let keyEvent = addEventListener("keydown", e);
+        document.addEventListener("keydown", moving);
 
-        function movingCircleObj() {
+        function circleObj() {
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.beginPath();
 
             context.arc(objX, objY, 30, 0, 2 * Math.PI, false);
             context.fillStyle = "green";
             context.fill();
-            context.closePath();
-
-            
         }
 
+        function moving(e){
+            switch (e.keyCode){
+                case 37:
+                    objX -= 2;
+                    break;
+                case 38:
+                    objY -= 2;
+                    break;
+                case 39:
+                    objX += 2;
+                    break;
+                case 40:
+                    objY += 2;
+                    break;
+            }
+        }
 
+        function movingCircleObj(e){
+            circleObj();
+            moving(e);
+        }
 
         setInterval(movingCircleObj, 1);
     </script>

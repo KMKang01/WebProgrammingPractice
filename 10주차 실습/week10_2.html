@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='ko'>
+
+<head>
+    <title>두 수 더하기/곱하기</title>
+</head>
+
+<body>
+    <h2>두 수 더하기/곱하기</h2>
+    <hr>
+    <div>
+        <input type="text" id="value1" size="5">
+        <input type="text" id="value2" size="5">
+    </div>
+
+    <div id="res"></div>
+
+    <div>
+        <button onclick="send2add()">add</button>
+        <button onclick="send2mul()">mul</button>
+    </div>
+    <script>
+        let addWorker = new Worker("add.js");
+        let mulWorker = new Worker("mul.js");
+        let value1 = document.getElementById("value1");
+        let value2 = document.getElementById("value2");
+        let val = { value1, value2 };
+        let resPrint = document.getElementById("res").innerHTML;
+
+        function send2add() {    
+            addWorker.postMessage(val);
+        }
+        addWorker.onmessage = function (e) {
+            resPrint = e.data;
+        }
+
+        function send2mul() {
+            mulWorker.postMessage(val);
+        }
+        mulWorker.onmessage = function (e) {
+            resPrint = e.data;
+        }
+    </script>
+</body>
+
+</html>
