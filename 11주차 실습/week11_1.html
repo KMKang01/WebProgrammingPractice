@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang='ko'>
+
+<head>
+    <title>Map객체와 동적객체</title>
+    <style>
+        table {
+            border-collapse: separate;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Map객체 & 동적객체 추가</h2>
+    <hr>
+    <div>
+        이름: <input type="text" id="name" size="5">
+    </div>
+    <div>
+        나이: <input type="text" id="age" size="5">
+    </div>
+    <div>
+        주소: <input type="text" id="address" size="30">
+    </div>
+    <div>
+        <button id="confirm" onclick="mapSet()">확인</button>
+        <button id="cancel">취소</button>
+    </div>
+    <hr>
+    <table id="mapTable">
+        <!--동적으로 추가될 내용-->
+        <thead>
+            <th>나이</th>
+            <th>이름</th>
+            <th>주소</th>
+        </thead>
+
+    </table>
+    <hr>
+    <script>
+        const map = new Map();
+
+        function mapSet() {
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let address = document.getElementById("address").value;
+
+            let array = { age, address };
+            map.set(array, name);
+            console.log(map);
+
+            show();
+        }
+        function show() {
+            let table = document.getElementById("mapTable");
+            // 기존에 테이블에 있는 내용 삭제
+            table.innerHTML = "";
+
+            // 테이블 헤더 생성
+            let thead = document.createElement("thead");
+            let headerRow = document.createElement("tr");
+            let ageHeader = document.createElement("th");
+            let nameHeader = document.createElement("th");
+            let addressHeader = document.createElement("th");
+            ageHeader.innerHTML = "나이";
+            nameHeader.innerHTML = "이름";
+            addressHeader.innerHTML = "주소";
+            headerRow.appendChild(ageHeader);
+            headerRow.appendChild(nameHeader);
+            headerRow.appendChild(addressHeader);
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Map의 값들을 순회하며 테이블 행 생성
+            map.forEach((name, { age, address }) => {
+                let newRow = document.createElement("tr");
+                let ageCell = document.createElement("td");
+                let nameCell = document.createElement("td");
+                let addressCell = document.createElement("td");
+                ageCell.innerHTML = age;
+                nameCell.innerHTML = name;
+                addressCell.innerHTML = address;
+                newRow.appendChild(ageCell);
+                newRow.appendChild(nameCell);
+                newRow.appendChild(addressCell);
+                table.appendChild(newRow);
+            });
+        }
+    </script>
+</body>
+
+</html>
