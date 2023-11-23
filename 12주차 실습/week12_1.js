@@ -6,16 +6,32 @@ const app = express();
 //CommonJS에서는 require("fs")형태로 임포트
 //ES 모듈에서는 import fs form "fs" 형태로 임포트
 
-let json = JSON.stringify(true);
+fs.writeFileSync('./write.txt',
+    `<!DOCTYPE html>
+    <html lang='ko'>
+    <head>
+     <title>JSON 외부 파일 읽기</title>
+     <style>
+        div{
+            color: blue;
+            font-size: 15px;
+        }
+     </style
+    </head>
+    <body>
+    `
+);
+
+let json = '<div>' + JSON.stringify(true) + '</div>' + '\n\t';
 console.log(json);
 
 try {
-    fs.writeFileSync('./write.txt',json);
+    fs.appendFileSync('./write.txt',json);
 } catch (error) {
     console.log(error);
 }
 
-json = JSON.stringify(["apple", "banana"]);
+json = '<div>' + JSON.stringify(["apple", "banana"]) + '</div>' + '\n\t';
 console.log(json);
 
 try {
@@ -30,7 +46,7 @@ const rabbit = {
     size: null,
 };
 
-json = JSON.stringify(rabbit);
+json = '<div>' + JSON.stringify(rabbit) + '</div>' + '\n\t';
 console.log(rabbit);
 
 try {
@@ -39,13 +55,8 @@ try {
     console.log(error);
 }
 
-json = JSON.stringify(rabbit, ["name", "color"]);
+json = '<div>' + JSON.stringify(rabbit, ["name", "color"]) + '</div>' + '\n\t';
 console.log(json);
-
-json = JSON.stringify(rabbit, (key, value) =>{
-    console.log( `key: ${key}, value: ${value}`);
-    return key === "name" ? "hansung" : value;
-});
 
 try {
     fs.appendFileSync('./write.txt', json);
@@ -53,18 +64,18 @@ try {
     console.log(error);
 }
 
+fs.appendFileSync('./write.txt',
+`</body>
+</html>`
+);
+
 try{
     data = fs.readFileSync('./write.txt','utf-8');
     console.log(data);
 } catch(error){
     console.log(error);
 }
-
-function print(){
-    const div = document.createElement("div");
-    div.innerHTML = data;
-    document.body.appendChild(div);
-}
+console.log(data);
 
 app.get('/', (req, res) => {
     fs.readFile('./write.txt', 'utf-8', (err, data) => {
@@ -77,6 +88,6 @@ app.get('/', (req, res) => {
     });
   });
 
-  app.listen(5500, () => {
-    console.log('서버가 8080번 포트에서 실행 중입니다.');
+  app.listen(5050, () => {
+    console.log('서버가 5050번 포트에서 실행 중입니다.');
   });
