@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- npm install ejs -->
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>로그인 화면</title>
+    <script>
+        let data1 = 0;
+    </script>
+</head>
+
+<body>
+    로그인(parameter)
+    <hr />
+    <a href="query?data1=aaa&data2=bbb">parameter</a>
+    <form action="query" method="get">
+        <table>
+            <tr>
+                <td>아이디</td>
+                <td>
+                    <input type="text" name="data1" />
+                </td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="text" name="data2" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" /></td>
+                <td><input type="reset" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

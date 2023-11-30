@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+ <title>강경민1</title>
+ <style>
+    div{
+        width: 100px;
+        height: 100px;
+        font-size: 50px;
+        background-color: lightgray;   
+        text-align: center;
+        padding: 25px;
+    }
+ </style>
+</head>
+<body>
+ <div id="stopwatch"></div>
+<script>
+    let timer = 0;
+    let show = document.getElementById("stopwatch");
+    
+    function stopwatch(){
+        show.innerHTML = timer;
+        timer++;
+    }
+    show.addEventListener("mouseover", over);
+    show.addEventListener("mouseout", out);
+    function over(event){
+        show.style.backgroundColor = "red";
+        timer = 0;
+        show.innerHTML = timer;
+        show.style.cursor = "pointer";    
+    }
+    function out(event){
+        show.style.backgroundColor = "lightgray";
+        show.innerHTML = timer;
+    }
+    setInterval(stopwatch, 1000);
+ </script>
+</body>
+</html>
