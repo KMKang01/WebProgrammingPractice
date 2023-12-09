@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+    <meta charset="UTF-8">
+ <title>EJS 만들기</title>
+</head>
+<body onload="fname.focus()">
+<h1>ejs 테스트</h1> 
+<form action="/create" method="post">
+    <input type="text" id="fname1" name="content1">
+    <br>
+    <input type="text" id="fname2" name="content2">
+    <br>
+    <input type="submit" value="submit">
+</form>
+<form action="/create" method="get">
+    <input type="text" id="fname1" name="content1">
+    <br>
+    <input type="text" id="fname2" name="content2">
+    <br>
+    <input type="submit" value="submit">
+</form>
+</body>
+</html>
